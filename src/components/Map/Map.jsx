@@ -7,17 +7,16 @@ import { Rating } from "@material-ui/lab";
 
 
 
-import useStyles from './styles'
+
 
 const Map = () => {
 
     const {setBounds,setCoordinates,bounds,coordinates} = useContext(MapContext); 
-    const classes = useStyles();
     const isMobile = useMediaQuery('(min-width:600px)');
 
 
     return(
-        <div className={classes.mapContainer}>
+        <div className="">
             <GoogleMapReact 
             bootstrapURLKeys = {{key:'AIzaSyAsgIN3HHyJfp4QkZsUW3g-PUyf4lKFby8'}}
             defaultCenter={coordinates}
