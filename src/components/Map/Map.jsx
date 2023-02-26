@@ -16,7 +16,7 @@ const Map = () => {
 
 
     return(
-        <div className="">
+        <div className=" mt-4 h-[85vh]">
             <GoogleMapReact 
             bootstrapURLKeys = {{key:'AIzaSyAsgIN3HHyJfp4QkZsUW3g-PUyf4lKFby8'}}
             defaultCenter={coordinates}
