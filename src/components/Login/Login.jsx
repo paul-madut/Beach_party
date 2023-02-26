@@ -5,6 +5,8 @@ import "../../index.css"
 import auth from "./firebase"
 import { signInWithPopup,GoogleAuthProvider } from "@firebase/auth";
 import{useAuthState} from 'react-firebase-hooks/auth'
+import { useDispatch, useSelector } from "react-redux";
+import { signedIn,signedOut } from "./signedInSlice";
 
 
 const Login = () => {
@@ -15,15 +17,17 @@ const Login = () => {
     }
 
     const [user,setUser] = useAuthState(auth);
-    const [loggedIn, setLoggedIn] = useState(false);
-
+    const logState = useSelector((state) => state.loggedIn.logState)
+    const dispatch = useDispatch();
+    
     useEffect(() => {
-        console.log(loggedIn)
+        console.log(logState)
+            
         if(user ==  null){
-            setLoggedIn(false);
+            dispatch(signedOut());
         }
         else{
-            setLoggedIn(true)
+            dispatch(signedIn());
         }
       },
       [user])
@@ -49,11 +53,11 @@ const Login = () => {
         <p className="text-red-500 text-xs italic">Please choose a password.</p>
       </div>
       <div className="flex items-center justify-between">
-        {!loggedIn ? <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+        {!logState ? <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
           Sign In
         </button>
         :
-        <button className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" onClick={()=>{auth.signOut();setLoggedIn(false)}}>
+        <button className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" onClick={()=>{auth.signOut();dispatch(signedOut())}}>
           Sign Out
         </button>}
         
