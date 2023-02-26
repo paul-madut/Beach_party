@@ -6,7 +6,8 @@ import auth from "./firebase"
 import { signInWithPopup,GoogleAuthProvider } from "@firebase/auth";
 import{useAuthState} from 'react-firebase-hooks/auth'
 import { useDispatch, useSelector } from "react-redux";
-import { signedIn,signedOut } from "./signedInSlice";
+import { signedIn,signedOut,loginUser } from "./signedInSlice";
+
 
 
 const Login = () => {
@@ -14,22 +15,32 @@ const Login = () => {
     const googleAuth = new GoogleAuthProvider();
     const login = async () => {
       const result = await signInWithPopup(auth,googleAuth);
+
     }
 
     const [user,setUser] = useAuthState(auth);
     const logState = useSelector((state) => state.loggedIn.logState)
+    const currentUser = useSelector((state) => state.loggedIn.currentUser)
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(loginUser(user))
+
+    },[])
     
     useEffect(() => {
-        console.log(logState)
-            
         if(user ==  null){
             dispatch(signedOut());
         }
         else{
             dispatch(signedIn());
+
         }
-      },
+        dispatch(loginUser(user))
+        console.log(currentUser)
+
+        
+    },
       [user])
     
   
@@ -57,7 +68,7 @@ const Login = () => {
           Sign In
         </button>
         :
-        <button className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" onClick={()=>{auth.signOut();dispatch(signedOut())}}>
+        <button className="inline-block border-2 border-blue-700 rounded-md p-3 align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" onClick={(e)=>{e.preventDefault();auth.signOut(); ;dispatch(signedOut())}}>
           Sign Out
         </button>}
         
