@@ -2,9 +2,16 @@ import React from "react";
 import { Autocomplete } from '@react-google-maps/api';
 import { Search } from "@material-ui/icons";
 import "../../index.css"
-
+import auth from "./firebase"
+import { signInWithPopup,GoogleAuthProvider } from "@firebase/auth";
 
 const Login = () => {
+
+    const googleAuth = new GoogleAuthProvider();
+    const login = async () => {
+      const result = await signInWithPopup(auth,googleAuth);
+    }
+  
 
     return(
         <>
@@ -33,6 +40,11 @@ const Login = () => {
         </a>
       </div>
     </form>
+    <div className="signInPartners justify-center">
+        <h1 className="">Sign In with Partner</h1>
+        <button onClick={login} className=" text-blue-400 border-2 border-blue-600 rounded-full p-2 m-2 hover:bg-blue-600 hover:text-white shadow-md"> Google</button>
+
+    </div>
                 
             </div>
         </div>
