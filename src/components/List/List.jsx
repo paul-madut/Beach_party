@@ -2,41 +2,45 @@ import React from "react";
 import { useState } from "react";
 import { CircularProgress,Grid,Typography,InputLabel,MenuItem,FormControl,Select } from "@material-ui/core";
 import BeachDetails from "../BeachDetails/BeachDetails";
+import { FlipRounded } from "@material-ui/icons";
 
-import useStyles from './styles'
+
 const List = ({places}) => {
-    const classes  = useStyles();
+
     const [type, setType] = useState('beaches');
     const [distance, setDistance] = useState(5);
 
     return(
-        <div className={classes.container}>
-            <Typography variant="h4">Beaches and Parks near you</Typography>
-            <FormControl className={classes.formControl}>
-                <InputLabel>Type</InputLabel>
-                <Select value={type} onChange={(e) => setType(e.target.value)}>
-                    <MenuItem value="beaches">Beaches</MenuItem>
-                    <MenuItem value="parks">Parks</MenuItem>
-                </Select>
-            </FormControl>
-            <FormControl className={classes.formControl}>
-                <InputLabel>Distance</InputLabel>
-                <Select value={distance} onChange={(e) => setDistance(e.target.value)}>
-                    <MenuItem value={5}>5km</MenuItem>
-                    <MenuItem value={10}>10km</MenuItem>
-                    <MenuItem value={25}>25km</MenuItem>
-                    <MenuItem value={50}>50km</MenuItem>
-                </Select>
-            </FormControl>
-            <Grid container spacing={3} className={classes.list}>
-                <Grid item key={1}>
-                {places?.map((place,i) => (
-                    <Grid item key ={i} xs={12}>
-                    <BeachDetails place ={place}/>
-                    </Grid>
-                ))}
-                 </Grid>
-            </Grid>
+        <div className="">
+            <h1 className=" text-4xl p-1 m-1">Beaches and Parks near you</h1>
+            <div className="forms flex space-x-8 pl-3 pt-4">
+
+            <form className="">
+                <label>Type</label>
+                <select value={type} onChange={(e) => setType(e.target.value)}>
+                    <option value="beaches">Beaches</option>
+                    <option value="parks">Parks</option>
+                </select>
+            </form>
+            <form className="">
+                <label>Distance</label>
+                <select value={distance} onChange={(e) => setDistance(e.target.value)}>
+                    <option value={5}>5km</option>
+                    <option value={10}>10km</option>
+                    <option value={25}>25km</option>
+                    <option value={50}>50km</option>
+                </select>
+            </form>
+            </div>
+            <div className="cards grid grid-cols-3">
+                <div className="item" key={1}>
+                    {places?.map((place,i)=> (
+                        <div className="item" key={i}>
+                            <BeachDetails place={place}/>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     )
 }

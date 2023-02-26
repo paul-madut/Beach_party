@@ -7,6 +7,9 @@ import { CssBaseline,Grid } from "@material-ui/core";
 import { useEffect,useState } from "react";
 import React from "react";
 
+import "./index.css"
+
+
 
 export const MapContext = React.createContext();
 
@@ -32,6 +35,8 @@ function App() {
   },[])
 
   return (
+    <div className="page h-screen bg-cover bg-[url('https://w0.peakpx.com/wallpaper/135/655/HD-wallpaper-sand-cartoon-texture-sand-cartoon-background-surface-texture-sand-texture-summer-background-sand-background-cartoon-surface-texture.jpg')]">
+
     <MapContext.Provider value={{setBounds, setCoordinates, bounds, coordinates}}>
     <CssBaseline/>
     <Header/>
@@ -46,6 +51,7 @@ function App() {
           </Grid>
     </Grid>
     </MapContext.Provider>
+    </div>
   );
 }
 
