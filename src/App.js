@@ -1,51 +1,28 @@
 
-import Header from "./components/Header/Header";
-import List from "./components/List/List";
-import Map from "./components/Map/Map";
-import { getBeachData } from "./api";
-import { CssBaseline,Grid } from "@material-ui/core";
-import { useEffect,useState } from "react";
-import React from "react";
-
-
-export const MapContext = React.createContext();
+import Main from "./components/Main/Main";
+import Login from "./components/Login/Login"
+import React, { useEffect } from "react";
+import { BrowserRouter,Route, Routes, Link,Navigate, useNavigate } from "react-router-dom";
+import "./index.css"
+import {useSelector } from "react-redux";
 
 function App() {
-  const [places, setPlaces] = useState();
+  const logState = useSelector((state) => state.loggedIn.logState)
 
-  const [coordinates, setCoordinates] = useState({});
-  const [bounds, setBounds] = useState({ne:0,sw:0});
-  
-  useEffect(()=>{
-    getBeachData(bounds.ne, bounds.sw).then((data) => {
-      console.log(data)
-      setPlaces(data);
-
-    })
-  },[coordinates,bounds]);
-  
-  useEffect(()=> {
-  
-    navigator.geolocation.getCurrentPosition(({coords:{latitude,longitude}})=>{
-    setCoordinates({lat:latitude,lng:longitude});
-    })
-  },[])
 
   return (
-    <MapContext.Provider value={{setBounds, setCoordinates, bounds, coordinates}}>
-    <CssBaseline/>
-    <Header/>
-    <Grid container spacing={3} style={{width: '100%'}}>
-          <Grid item xs={12} md={4}>
-            <List places ={places}/>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <Map/>
-            
-            
-          </Grid>
-    </Grid>
-    </MapContext.Provider>
+    <BrowserRouter>
+    <main>
+      <Routes>
+
+        <Route path="app" element={<Main/>} />
+        
+        <Route path="inbox" element={<Login/>} />
+        <Route path="/" element={!logState ? <Login/>: <Main/>} />
+
+      </Routes>
+    </main>
+    </BrowserRouter>
   );
 }
 

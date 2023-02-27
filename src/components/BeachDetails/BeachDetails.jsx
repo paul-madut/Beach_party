@@ -1,26 +1,27 @@
 import React from "react";
-import { Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chip } from "@material-ui/core";
-import { Phone } from "@material-ui/icons";
-import { Rating } from "@material-ui/lab";
-import useStyles from "./styles"
+import { LocationOnOutlined } from "@material-ui/icons";
 
 const BeachDetails = ({place}) => {
     let placeData = place.place_name.split(',')
 
     return(
-      <Card elevation={6}>
-        <CardMedia
-        style = {{height:350}}
-        title={placeData[0]}
-        image={'https://www.bestwesternsiestakey.com/wp-content/uploads/2022/02/Siesta-Key-red-lifeguard-stand-735x0-c-default.jpg'}
-        />
+      <div className="card bg-white overflow-hidden rounded-3xl border-2 shadow-2xl border-blue-600 h-full w-full">
+        <h1 className=" text-2xl p-2"> {placeData[0]} </h1>
 
-        <CardContent>
-          <Typography gutterBottom variant="h5">{placeData[0]}</Typography>
-        </CardContent>
+        <img src="https://wallpaper.dog/large/10722978.jpg"></img>
 
-      </Card>
-      
+         <div className="location flex justify-around">
+           <LocationOnOutlined/>
+           <h3>{placeData[1]}</h3>
+         </div> 
+
+        <div className="buttons flex  justify-around">
+          <button>Create Party</button>
+          <button>Join Party</button>
+        </div>
+
+
+      </div>
     )
 }
 
