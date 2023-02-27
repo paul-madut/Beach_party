@@ -46,4 +46,3 @@ const List = ({places}) => {
 }
 
 export default List
-export default List
