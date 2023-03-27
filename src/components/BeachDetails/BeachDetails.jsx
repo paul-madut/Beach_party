@@ -5,7 +5,7 @@ const BeachDetails = ({place}) => {
     let placeData = place.place_name.split(',')
 
     return(
-      <div className="card bg-white overflow-hidden rounded-3xl border-2 shadow-2xl border-blue-600 h-full w-full">
+      <div className="card w-2/3 bg-white overflow-hidden rounded-3xl border-2 shadow-2xl border-blue-600 h-full  w-full">
         <h1 className=" text-2xl p-2"> {placeData[0]} </h1>
 
         <img src="https://wallpaper.dog/large/10722978.jpg"></img>
