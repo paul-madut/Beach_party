@@ -16,8 +16,8 @@ const BeachDetails = ({place}) => {
          </div> 
 
         <div className="buttons flex  justify-around">
-          <button>Create Party</button>
           <button>Join Party</button>
+          <button>Join Chat</button>
         </div>
 
 

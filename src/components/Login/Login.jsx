@@ -2,7 +2,7 @@ import React, {useEffect, useState } from "react";
 import { Autocomplete } from '@react-google-maps/api';
 import { Search } from "@material-ui/icons";
 import "../../index.css"
-import auth from "./firebase"
+import {auth} from "./firebase"
 import { signInWithPopup,GoogleAuthProvider } from "@firebase/auth";
 import{useAuthState} from 'react-firebase-hooks/auth'
 import { useDispatch, useSelector } from "react-redux";
@@ -37,7 +37,7 @@ const Login = () => {
 
         }
         dispatch(loginUser(user))
-        console.log(currentUser)
+        
 
         
     },

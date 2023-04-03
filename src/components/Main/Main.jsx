@@ -22,7 +22,7 @@ function Main() {
     
     useEffect(()=>{
       getBeachData(bounds.ne, bounds.sw).then((data) => {
-        console.log(data)
+        
         setPlaces(data);
   
       })

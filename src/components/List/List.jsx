@@ -32,7 +32,7 @@ const List = ({places}) => {
                 </select>
             </form>
             </div>
-            <div className="cards flex-cols items-center">
+            <div className="cards flex-cols">
                 <div className="item" key={1}>
                     {places?.map((place,i)=> (
                         <div className="item" key={i}>
